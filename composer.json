@@ -1,0 +1,12 @@
+{
+    "name": "ecosystem/notification",
+    "type": "symfony-bundle",
+    "autoload": {
+        "psr-4": {
+            "Ecosystem\\NotificationBundle\\": "src/"
+        }
+    },
+    "require": {
+        "aws/aws-sdk-php": "^3"
+    }
+}
