@@ -1,0 +1,3 @@
+services:
+  Ecosystem\NotificationBundle\Service\:
+    resource: ../src/Service
