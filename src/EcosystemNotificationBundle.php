@@ -16,7 +16,7 @@ class EcosystemNotificationBundle extends Bundle
     ): void {
         $containerConfigurator->import('../config/services.yaml');
 
-        $containerConfigurator->services()->get(NotificationService::class);
+        $containerConfigurator->services()->get(NotificationService::class)->arg(0, $config['url']);
     }
 
     public function configure(DefinitionConfigurator $definition): void
