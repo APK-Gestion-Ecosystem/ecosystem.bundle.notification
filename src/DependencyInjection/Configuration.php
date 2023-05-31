@@ -1,6 +1,6 @@
 <?php
 
-namespace Stof\DoctrineExtensionsBundle\DependencyInjection;
+namespace Ecosystem\NotificationBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Stof\DoctrineExtensionsBundle\DependencyInjection;
+namespace Ecosystem\NotificationBundle\DependencyInjection;
 
 use Ecosystem\NotificationBundle\Service\NotificationService;
 use Symfony\Component\Config\FileLocator;
