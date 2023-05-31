@@ -20,6 +20,6 @@ class EcosystemNotificationExtension extends Extension
 
         $definition = $container->getDefinition(NotificationService::class);
 
-        $definition->addArgument(0, $config['url']);
+        $definition->setArgument(0, $config['url']);
     }
 }
