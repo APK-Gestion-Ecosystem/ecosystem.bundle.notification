@@ -112,7 +112,7 @@ class Notification implements \JsonSerializable
             'to' => $this->to,
             'cc' => $this->cc,
             'bcc' => $this->bcc,
-            'variables' => $this->params,
+            'params' => $this->params,
             'attachments' => $this->attachments,
             'locale' => $this->locale
         ];
