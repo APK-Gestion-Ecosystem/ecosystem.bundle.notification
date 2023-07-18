@@ -5,8 +5,10 @@ namespace Ecosystem\NotificationBundle\Entity;
 class Notification implements \JsonSerializable
 {
     private string $code;
-    private array $to;
-    private array $variables = [];
+    private array $to = [];
+    private array $cc = [];
+    private array $bcc = [];
+    private array $params = [];
     private array $attachments = [];
     private ?string $locale = null;
 
@@ -22,7 +24,7 @@ class Notification implements \JsonSerializable
         return $this;
     }
 
-    public function getTo(): string
+    public function getTo(): array
     {
         return $this->to;
     }
@@ -34,14 +36,38 @@ class Notification implements \JsonSerializable
         return $this;
     }
 
-    public function getVariables(): array
+    public function getCc(): array
     {
-        return $this->variables;
+        return $this->cc;
     }
 
-    public function setVariables(array $variables): self
+    public function setCc(array $cc): self
     {
-        $this->variables = $variables;
+        $this->cc = $cc;
+
+        return $this;
+    }
+
+    public function getBcc(): array
+    {
+        return $this->bcc;
+    }
+
+    public function setBcc(array $bcc): self
+    {
+        $this->bcc = $bcc;
+
+        return $this;
+    }
+
+    public function getParams(): array
+    {
+        return $this->params;
+    }
+
+    public function setParams(array $params): self
+    {
+        $this->params = $params;
 
         return $this;
     }
@@ -70,24 +96,25 @@ class Notification implements \JsonSerializable
         return $this;
     }
 
-    public function __construct(string $code, array $to)
+    public function __construct(string $code)
     {
         $this->code = $code;
-        $this->to = $to;
     }
 
-    public static function create(string $code, array $to): self
+    public static function create(string $code): self
     {
-        return new self($code, $to);
+        return new self($code);
     }
 
     public function jsonSerialize() {
         return [
-          'code' => $this->code,
-          'to' => $this->to,
-          'variables' => $this->variables,
-          'attachments' => $this->attachments,
-          'locale' => $this->locale
+            'code' => $this->code,
+            'to' => $this->to,
+            'cc' => $this->cc,
+            'bcc' => $this->bcc,
+            'params' => $this->params,
+            'attachments' => $this->attachments,
+            'locale' => $this->locale
         ];
     }
 }

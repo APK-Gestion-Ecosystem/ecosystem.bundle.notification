@@ -1,9 +1,3 @@
-parameters:
-# nothing to declare
 services:
-  _defaults:
-    autowire: true
-    autoconfigure: true
-
   Ecosystem\NotificationBundle\Service\:
-    resource: '../src/Service'
+    resource: ../src/Service
