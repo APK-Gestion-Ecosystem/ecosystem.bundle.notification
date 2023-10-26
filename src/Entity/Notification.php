@@ -12,6 +12,7 @@ class Notification implements \JsonSerializable
     private array $attachments = [];
     private ?string $locale = null;
     private array $parkingNotification = [];
+    private string $subject;
 
     public function getCode(): string
     {
@@ -108,6 +109,17 @@ class Notification implements \JsonSerializable
         return $this;
     }
 
+    public function getSubject(): string
+    {
+        return $this->subject;
+    }
+
+    public function setSubject(string $subject): Notification
+    {
+        $this->subject = $subject;
+        return $this;
+    }
+
     public function __construct(string $code)
     {
         $this->code = $code;
@@ -127,7 +139,8 @@ class Notification implements \JsonSerializable
             'params' => $this->params,
             'attachments' => $this->attachments,
             'locale' => $this->locale,
-            'parking' => $this->parkingNotification
+            'parking' => $this->parkingNotification,
+            'subject' => $this->subject
         ];
     }
 }
