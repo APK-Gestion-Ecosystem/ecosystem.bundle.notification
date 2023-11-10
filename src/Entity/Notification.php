@@ -104,7 +104,7 @@ class Notification implements \JsonSerializable
         return $this->parkingNotification;
     }
 
-    public function setParkingNotification(?array $parkingNotification): Notification
+    public function setParkingNotification(?array $parkingNotification): self
     {
         $this->parkingNotification = $parkingNotification;
         return $this;
@@ -115,7 +115,7 @@ class Notification implements \JsonSerializable
         return $this->subject;
     }
 
-    public function setSubject(?string $subject): Notification
+    public function setSubject(?string $subject): self
     {
         $this->subject = $subject;
         return $this;
@@ -126,9 +126,10 @@ class Notification implements \JsonSerializable
         return $this->clientUuid;
     }
 
-    public function setClientUuid(?string $clientUuid): void
+    public function setClientUuid(?string $clientUuid): self
     {
         $this->clientUuid = $clientUuid;
+        return $this;
     }
 
     public function __construct(string $code)
