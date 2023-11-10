@@ -13,6 +13,7 @@ class Notification implements \JsonSerializable
     private ?string $locale = null;
     private array $parkingNotification = [];
     private ?string $subject = null;
+    private ?string $clientUuid = null;
 
     public function getCode(): string
     {
@@ -120,6 +121,16 @@ class Notification implements \JsonSerializable
         return $this;
     }
 
+    public function getClientUuid(): ?string
+    {
+        return $this->clientUuid;
+    }
+
+    public function setClientUuid(?string $clientUuid): void
+    {
+        $this->clientUuid = $clientUuid;
+    }
+
     public function __construct(string $code)
     {
         $this->code = $code;
@@ -130,7 +141,8 @@ class Notification implements \JsonSerializable
         return new self($code);
     }
 
-    public function jsonSerialize() {
+    public function jsonSerialize(): array
+    {
         return [
             'code' => $this->code,
             'to' => $this->to,
@@ -140,7 +152,8 @@ class Notification implements \JsonSerializable
             'attachments' => $this->attachments,
             'locale' => $this->locale,
             'parking' => $this->parkingNotification,
-            'subject' => $this->subject
+            'subject' => $this->subject,
+            'clientUuid' => $this->clientUuid
         ];
     }
 }
