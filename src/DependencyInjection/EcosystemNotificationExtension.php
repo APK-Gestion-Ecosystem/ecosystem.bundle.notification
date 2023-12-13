@@ -21,5 +21,6 @@ class EcosystemNotificationExtension extends Extension
         $definition = $container->getDefinition(NotificationService::class);
 
         $definition->setArgument(0, $config['url']);
+        $definition->setArgument(1, $config['signature_key']);
     }
 }

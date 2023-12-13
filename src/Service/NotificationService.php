@@ -9,9 +9,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class NotificationService
 {
     private HttpClientInterface $httpClient;
-    private string $notificationUrl;
 
-    public function __construct(string $notificationUrl)
+    public function __construct(private string $notificationUrl, private string $signatureKey)
     {
         $this->notificationUrl = $notificationUrl;
         $this->httpClient = HttpClient::create([
@@ -23,7 +22,17 @@ class NotificationService
 
     public function notify(Notification $notification): bool
     {
-        $response = $this->httpClient->request('POST', $this->notificationUrl, ['body' => json_encode($notification)]);
+        $body = json_encode($notification);
+        $signature = hash_hmac('sha256', $body, $this->signatureKey);
+
+        $response = $this->httpClient->request(
+            'POST',
+            $this->notificationUrl,
+            [
+                'body' => $body,
+                'headers' => ['x-signature' => $signature]
+            ]
+        );
 
         return $response->getStatusCode() === 200;
     }
