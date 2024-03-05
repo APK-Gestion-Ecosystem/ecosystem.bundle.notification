@@ -23,7 +23,7 @@ class NotificationService
     public function notify(Notification $notification): bool
     {
         $body = json_encode($notification);
-        $signature = hash_hmac('sha256', $body, $this->signatureKey);
+        $signature = $this->getSignature($body);
 
         $response = $this->httpClient->request(
             'POST',
@@ -35,5 +35,25 @@ class NotificationService
         );
 
         return $response->getStatusCode() === 200;
+    }
+
+    public function asyncNotify(Notification $notification): void
+    {
+        $body = json_encode($notification);
+        $signature = $this->getSignature($body);
+
+        $this->httpClient->request(
+            'POST',
+            $this->notificationUrl,
+            [
+                'body' => $body,
+                'headers' => ['x-signature' => $signature]
+            ]
+        );
+    }
+
+    private function getSignature(string $body): string
+    {
+        return hash_hmac('sha256', $body, $this->signatureKey);
     }
 }
